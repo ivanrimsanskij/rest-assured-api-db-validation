@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="API and DB Integration Suite">
+    <test name="User Validation Tests">
+        <classes>
+            <class name="org.prog.api.RestClass"/>
+        </classes>
+    </test>
+</suite>
