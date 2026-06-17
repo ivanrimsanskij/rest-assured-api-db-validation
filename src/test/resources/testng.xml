@@ -3,7 +3,7 @@
 <suite name="API and DB Integration Suite">
     <test name="User Validation Tests">
         <classes>
-            <class name="org.prog.api.RestClass"/>
+            <class name="org.prog.api.TestClass"/>
         </classes>
     </test>
 </suite>
