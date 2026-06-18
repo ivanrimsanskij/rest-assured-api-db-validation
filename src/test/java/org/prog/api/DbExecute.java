@@ -62,7 +62,7 @@ public class DbExecute {
         try(Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("Select * From Persons Where Gender = 'female'")) {
             List<String> females = new ArrayList<>();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 females.add(resultSet.getString("FirstName"));
             }
             return females;
