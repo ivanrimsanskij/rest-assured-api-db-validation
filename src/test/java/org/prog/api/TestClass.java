@@ -11,7 +11,7 @@ import java.sql.*;
 public class TestClass {
     private Connection connection;
     private RestExecute restExecute;
-    private DbExucute dbExucute;
+    private DbExecute dbExecute;
 
     @BeforeSuite
     public void beforeSuite() throws SQLException {
@@ -20,19 +20,20 @@ public class TestClass {
         String password = System.getenv("Db_Password");
         connection = DriverManager.getConnection(url, user, password);
         restExecute = new RestExecute();
-        dbExucute = new DbExucute();
-        dbExucute.setConnection(connection);
+        dbExecute = new DbExecute();
+        dbExecute.setConnection(connection);
     }
 
     @Test
         public void restSqlTest() throws SQLException {
         ResultDto dto = restExecute.getUsers(20);
 
-        int entrycount = dbExucute.countPersons();
-        int insertedMalesCount = dbExucute.setValuesToDb(dto);
-        int postInsertCount = dbExucute.countPersons();
+        int entrycount = dbExecute.countPersons();
+        int insertedMalesCount = dbExecute.setValuesToDb(dto);
+        int postInsertCount = dbExecute.countPersons();
         Assert.assertEquals(postInsertCount - entrycount, insertedMalesCount,
                 "The number of rows in DB doesn't match!");
+        Assert.assertTrue(dbExecute.getFemale().isEmpty(), "Error: female found in DB");
     }
 
     @AfterSuite

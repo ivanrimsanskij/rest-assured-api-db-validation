@@ -2,9 +2,12 @@ package org.prog.api;
 
 import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 
-public class DbExucute {
+public class DbExecute {
     private Connection connection;
 
     public void setConnection(Connection connection) {
@@ -53,5 +56,16 @@ public class DbExucute {
             }
         }
         return 0;
+    }
+
+    public List<String> getFemale() throws SQLException {
+        try(Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select * From Persons Where Gender = 'female'")) {
+            List<String> females = new ArrayList<>();
+            if (resultSet.next()) {
+                females.add(resultSet.getString("FirstName"));
+            }
+            return females;
+        }
     }
 }
